@@ -4,18 +4,23 @@
 	"type": "module",
 	"main": "main.ts",
 	"scripts": {
-		"dev": "pnpx ts-node --loader ts-node/esm main.ts"
+		"dev": "nodemon"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
 	"packageManager": "pnpm@10.18.2",
 	"dependencies": {
+		"@prisma/client": "^6.17.1",
+		"cors": "^2.8.5",
 		"dotenv": "^17.2.3",
 		"express": "^5.1.0",
-		"morgan": "^1.10.1"
+		"morgan": "^1.10.1",
+		"prisma": "^6.17.1",
+		"ts-node": "^10.9.2"
 	},
 	"devDependencies": {
+		"@types/cors": "^2.8.19",
 		"@types/express": "^5.0.3",
 		"@types/morgan": "^1.9.10",
 		"nodemon": "^3.1.10",

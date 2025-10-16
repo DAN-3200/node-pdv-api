@@ -1,5 +1,6 @@
 import type { IProduct } from '../../internal/dto.js';
 import type { Idatabase } from '../../internal/ports.js';
+import { PrismaClient } from '@prisma/client';
 
 export class DataBaseORM implements Idatabase {
 	findProductById(id: number): boolean {}

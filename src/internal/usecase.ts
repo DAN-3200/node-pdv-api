@@ -3,11 +3,7 @@ import { ProductBuilder } from './entity.js';
 import type { Idatabase } from './ports.js';
 
 export class ProductUseCase {
-	private repo: Idatabase;
-
-	constructor(repository: Idatabase) {
-		this.repo = repository;
-	}
+	constructor(private repo: Idatabase) {}
 
 	saveProduct(product: IProduct): void {
 		const productObj = new ProductBuilder()
@@ -36,8 +32,8 @@ export class ProductUseCase {
 		return this.repo.getProductList();
 	}
 
-	editProductList(info: IProduct): void {
-		return this.repo.editProduct(info);
+	editProduct(info: IProduct): void {
+		this.repo.editProduct(info);
 	}
 
 	deleteProduct(id: number): void {
