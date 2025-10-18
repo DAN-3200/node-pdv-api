@@ -3,7 +3,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import { setRoutes } from './routes.ts';
 
-export default async function runServer() {
+export default function runServer() {
 	const server = Express();
 	const port = 8000;
 

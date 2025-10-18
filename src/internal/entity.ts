@@ -1,5 +1,3 @@
-import type { IProduct } from './dto.js';
-
 export type UnitOptions =
 	| 'UN'
 	| 'KG'
@@ -9,7 +7,13 @@ export type UnitOptions =
 	| 'Pacote'
 	| 'Fardo';
 
-export class Product {
+export interface Tag {
+	key: number;
+	text: string;
+	color: string;
+}
+
+export class ProductEntity {
 	private ID: number = 0;
 	private barcode: string = '';
 	private name: string = '';
@@ -22,31 +26,27 @@ export class Product {
 		min: number;
 		max: number;
 	} = { base: 0, max: 0, min: 0 };
-	private tags: string[] = [];
+	private tags: Tag[] = [];
 
 	calcPrice(): number {
-		return this.cost * this.margin;
+		return this.margin != 0 ? this.cost * (1 + this.margin / 100) : this.price;
 	}
 
-	toDTO(): IProduct {
-		return {
-			id: this.ID,
-			codigoBarras: this.barcode,
-			nomeProduto: this.name,
-			unidadeMedida: this.unit,
-			custo: this.cost,
-			margem: this.margin,
-			preco: this.price,
-			quantidade: this.stock,
-			etiquetas: this.tags,
-		} as IProduct;
-	}
+	getID = () => this.ID;
+	getBarcode = () => this.barcode;
+	getName = () => this.name;
+	getUnit = () => this.unit;
+	getCost = () => this.cost;
+	getMargin = () => this.margin;
+	getPrice = () => this.price;
+	getStock = () => this.stock;
+	getTags = () => this.tags;
 }
 
 export class ProductBuilder {
-	private product: Product;
+	private product: ProductEntity;
 	constructor() {
-		this.product = new Product();
+		this.product = new ProductEntity();
 	}
 
 	setID(id: number): ProductBuilder {
@@ -79,25 +79,26 @@ export class ProductBuilder {
 		return this;
 	}
 
-   setPrice(price: number): ProductBuilder {
-      this.product['price'] = price
-      return this
-   }
+	setPrice(price: number): ProductBuilder {
+		this.product['price'] = price;
+		return this;
+	}
 
 	setStock(base: number, min: number, max: number): ProductBuilder {
 		this.product['stock'] = { base, min, max };
 		return this;
 	}
 
-	setTags(tags: string[]): ProductBuilder {
+	setTags(tags: Tag[]): ProductBuilder {
 		this.product['tags'] = tags;
 		return this;
 	}
 
-	build(): Product {
+	build(): ProductEntity {
 		if (!this.product['name']) throw new Error('Produto precisa de nome');
-		if (this.product['cost'] <= 0) throw new Error('Custo inválido');
-		if (this.product['price'] != this.product.calcPrice()) throw new Error('O preço não condiz com calculo estabelecido');
+		if (this.product['cost'] < 0) throw new Error('Custo inválido');
+		if (this.product['price'] != this.product.calcPrice())
+			throw new Error('O preço não condiz com calculo estabelecido');
 
 		return this.product;
 	}

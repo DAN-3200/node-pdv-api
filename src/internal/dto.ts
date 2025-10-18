@@ -1,17 +1,32 @@
-import type { UnitOptions } from "./entity.js";
+import type { ProductEntity, Tag, UnitOptions } from './entity.ts';
 
-export interface IProduct {
-	id: number;
-	codigoBarras: string;
-	nomeProduto: string;
-	unidadeMedida: UnitOptions;
-	custo: number;
-	margem: number;
-	preco: number;
-	quantidade: {
+export interface ProductDto {
+	ID: number;
+	barcode: string;
+	name: string;
+	unit: UnitOptions;
+	cost: number;
+	margin: number;
+	price: number;
+	stock: {
 		base: number;
 		min: number;
 		max: number;
 	};
-	etiquetas: string[];
+	tags: Tag[];
 }
+
+export const toProductDto = (product: ProductEntity): ProductDto => {
+	return {
+		ID: product.getID(),
+		barcode: product.getBarcode(),
+		name: product.getName(),
+		unit: product.getUnit(),
+		cost: product.getCost(),
+		margin: product.getMargin(),
+		price: product.getPrice(),
+		stock: product.getStock(),
+		tags: product.getTags(),
+	} as ProductDto;
+};
+

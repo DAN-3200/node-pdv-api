@@ -1,42 +1,40 @@
-import type { IProduct } from './dto.js';
-import { ProductBuilder } from './entity.js';
-import type { Idatabase } from './ports.js';
+import { toProductDto, type ProductDto } from './dto.ts';
+import { ProductBuilder } from './entity.ts';
+import type { ProductDBPorts } from './ports.ts';
 
 export class ProductUseCase {
-	constructor(private repo: Idatabase) {}
+	private repo: ProductDBPorts;
+	constructor(repo: ProductDBPorts) {
+		this.repo = repo;
+	}
 
-	saveProduct(product: IProduct): void {
+	saveProduct = async (product: ProductDto): Promise<ProductDto> => {
 		const productObj = new ProductBuilder()
-			.setBarcode(product.codigoBarras)
-			.setName(product.nomeProduto)
-			.setUnit(product.unidadeMedida)
-			.setCost(product.custo)
-			.setMargin(product.margem)
-			.setPrice(product.preco)
-			.setStock(
-				product.quantidade.base,
-				product.quantidade.min,
-				product.quantidade.max
-			)
-			.setTags(product.etiquetas)
+			.setBarcode(product.barcode)
+			.setName(product.name)
+			.setUnit(product.unit)
+			.setCost(product.cost)
+			.setMargin(product.margin)
+			.setPrice(product.price)
+			.setStock(product.stock.base, product.stock.min, product.stock.max)
+			.setTags(product.tags)
 			.build();
 
-		this.repo.saveProcuct(productObj.toDTO());
-	}
+		// console.table(product.tags);
 
-	getProduct(id: number): IProduct {
-		return this.repo.getProduct(id);
-	}
+		return await this.repo.saveProduct(toProductDto(productObj));
+	};
 
-	getProductList(): IProduct[] {
-		return this.repo.getProductList();
-	}
+	getProduct = async (id: number): Promise<ProductDto> =>
+		await this.repo.getProduct(id);
 
-	editProduct(info: IProduct): void {
-		this.repo.editProduct(info);
-	}
+	getProductList = async (): Promise<ProductDto[]> =>
+		await this.repo.getProductList();
 
-	deleteProduct(id: number): void {
-		this.repo.deleteProduct(id);
-	}
+	// *aplicar validação com regra de negócio, ex: barCode já existente
+	editProduct = async (info: Partial<ProductDto>): Promise<void> =>
+		await this.repo.editProduct(info);
+
+	deleteProduct = async (id: number): Promise<void> =>
+		await this.repo.deleteProduct(id);
 }
