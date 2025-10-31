@@ -4,6 +4,7 @@
 	"type": "module",
 	"main": "main.ts",
 	"scripts": {
+		"start": "node main.ts",
 		"dev": "nodemon"
 	},
 	"keywords": [],
