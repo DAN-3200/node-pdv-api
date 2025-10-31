@@ -1,6 +1,6 @@
-import { toProductDto, type ProductDto } from './dto.ts';
-import { ProductBuilder } from './entity.ts';
-import type { ProductDBPorts } from './ports.ts';
+import { toProductDto, type ProductDto } from './dto.js';
+import { ProductBuilder } from './entity.js';
+import type { ProductDBPorts } from './ports.js';
 
 export class ProductUseCase {
 	private repo: ProductDBPorts;

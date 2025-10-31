@@ -1,5 +1,5 @@
-import type { ProductDto } from '../../internal/dto.ts';
-import type { ProductDBPorts } from '../../internal/ports.ts';
+import type { ProductDto } from '../../internal/dto.js';
+import type { ProductDBPorts } from '../../internal/ports.js';
 import { PrismaClient } from '@prisma/client';
 
 // *ponderá se talvez dê erro de initial lag (isso inicializar depois das funções) ou não

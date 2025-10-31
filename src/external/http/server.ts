@@ -1,7 +1,7 @@
 import Express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
-import { setRoutes } from './routes.ts';
+import { setRoutes } from './routes.js';
 
 export default function runServer() {
 	const server = Express();

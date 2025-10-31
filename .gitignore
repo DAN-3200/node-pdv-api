@@ -3,3 +3,4 @@
 .env
 /src/generated/prisma
 /prisma/migrations
+/dist

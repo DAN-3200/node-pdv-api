@@ -1,6 +1,6 @@
-import { ProductUseCase } from '../../internal/usecase.ts';
-import { ProductRepository } from '../adapters/repository.ts';
-import { ProductController } from './controller.ts';
+import { ProductUseCase } from '../../internal/usecase.js';
+import { ProductRepository } from '../adapters/repository.js';
+import { ProductController } from './controller.js';
 import Express from 'express';
 
 export function setRoutes(server: Express.Application) {
