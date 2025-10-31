@@ -5,7 +5,7 @@ import { setRoutes } from './routes.ts';
 
 export default function runServer() {
 	const server = Express();
-	const port = 8000;
+	const port = process.env.PORT || 8080;
 
 	server.use(Express.json(), morgan('dev'), cors());
 

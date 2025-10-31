@@ -4,8 +4,9 @@
 	"type": "module",
 	"main": "main.ts",
 	"scripts": {
-		"start": "node main.ts",
-		"dev": "nodemon"
+		"start": "node src/main.ts",
+		"dev": "nodemon --watch src --exec ts-node src/main.ts",
+		"build": "tsc"
 	},
 	"keywords": [],
 	"author": "",
