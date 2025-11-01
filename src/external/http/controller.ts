@@ -1,5 +1,5 @@
-import type { ProductDto } from '../../internal/dto.js';
-import type { ProductUseCase } from '../../internal/usecase.js';
+import type { ProductDto } from '../../internal/dto.ts';
+import type { ProductUseCase } from '../../internal/usecase.ts';
 import type { Request, Response } from 'express';
 
 // *revisar http status

@@ -1,6 +1,6 @@
-import { toProductDto, type ProductDto } from './dto.js';
-import { ProductBuilder } from './entity.js';
-import type { ProductDBPorts } from './ports.js';
+import { toProductDto, type ProductDto } from './dto.ts';
+import { ProductBuilder } from './entity.ts';
+import type { ProductDBPorts } from './ports.ts';
 
 export class ProductUseCase {
 	private repo: ProductDBPorts;
@@ -14,7 +14,6 @@ export class ProductUseCase {
 			.setName(product.name)
 			.setUnit(product.unit)
 			.setCost(product.cost)
-			.setMargin(product.margin)
 			.setPrice(product.price)
 			.setStock(product.stock.base, product.stock.min, product.stock.max)
 			.setTags(product.tags)

@@ -1,0 +1,15 @@
+{
+  "tasks": {
+    "dev": "deno run --watch src/main.ts"
+  },
+  "imports": {
+    "@std/assert": "jsr:@std/assert@1",
+    "@types/pg": "npm:@types/pg@^8.15.6",
+    "cors": "npm:cors@^2.8.5",
+    "drizzle-kit": "npm:drizzle-kit@^0.31.6",
+    "drizzle-orm": "npm:drizzle-orm@0.44.7",
+    "express": "npm:express@^5.1.0",
+    "morgan": "npm:morgan@^1.10.1",
+    "pg": "npm:pg@^8.16.3"
+  }
+}

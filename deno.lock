@@ -1,0 +1,23 @@
+{
+  "version": "4",
+  "specifiers": {
+    "npm:drizzle-orm@0.44.7": "0.44.7"
+  },
+  "npm": {
+    "drizzle-orm@0.44.7": {
+      "integrity": "sha512-quIpnYznjU9lHshEOAYLoZ9s3jweleHlZIAWR/jX9gAWNg/JhQ1wj0KGRf7/Zm+obRrYd9GjPVJg790QY9N5AQ=="
+    }
+  },
+  "workspace": {
+    "dependencies": [
+      "jsr:@std/assert@1",
+      "npm:@types/pg@^8.15.6",
+      "npm:cors@^2.8.5",
+      "npm:drizzle-kit@~0.31.6",
+      "npm:drizzle-orm@0.44.7",
+      "npm:express@^5.1.0",
+      "npm:morgan@^1.10.1",
+      "npm:pg@^8.16.3"
+    ]
+  }
+}

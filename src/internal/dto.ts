@@ -1,4 +1,4 @@
-import type { ProductEntity, Tag, UnitOptions } from './entity.js';
+import type { ProductEntity, Tag, UnitOptions } from './entity.ts';
 
 export interface ProductDto {
 	ID: number;

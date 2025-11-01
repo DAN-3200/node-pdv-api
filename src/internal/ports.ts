@@ -1,4 +1,4 @@
-import type { ProductDto } from './dto.js';
+import type { ProductDto } from './dto.ts';
 
 export interface ProductDBPorts {
 	findProductById(id: number): Promise<boolean>;

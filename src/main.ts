@@ -1,3 +1,3 @@
-import runServer from './external/http/server.js';
+import runServer from './external/http/server.ts';
 
 runServer();

@@ -1,11 +1,11 @@
 import Express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
-import { setRoutes } from './routes.js';
+import { setRoutes } from './routes.ts';
 
 export default function runServer() {
 	const server = Express();
-	const port = process.env.PORT || 8080;
+	const port = Deno.env.get("PORT") || 8080;
 
 	server.use(Express.json(), morgan('dev'), cors());
 
